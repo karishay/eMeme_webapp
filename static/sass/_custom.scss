@@ -1,0 +1,83 @@
+// Your custom SCSS should be written here...
+
+@import '../bower_components/gumby-parallax/_parallax.scss'; 
+
+html {
+    height: 2000px;
+}
+
+.navbar {
+    margin-bottom: 0px;
+    padding:0px;
+    background: rgba(44,62,80,.75)
+}
+
+.parallax {
+    background-size: cover;
+    bacground-repeat: no-repeat;
+    &#Download {
+        background-image: url(../img/bulletMemes.jpg);
+    }    
+    &#Login {
+        background-image: url(../img/smilieSuit.jpg);
+    }
+    &#Register {
+        background-image: url(../img/allTheMemes.jpg);
+    }
+}
+
+.container {
+    @include row();
+}
+
+.margins {
+    background: rgba(44,62,80,.5);
+    margin: 280px auto 300px;
+    border-radius: 30px;
+    padding: 30px;
+    .article {
+        background: #AAE3D8 !important; 
+        border-radius: 35px;
+        padding: 60px;
+        text-align: float left;
+    }
+    &#landingBar {
+        background: rgba(88,105,102,.75) !important;
+        padding: 60px;
+        text-align: center;
+    }
+}
+
+.skiplink {
+    background: none;
+}
+
+.gumby-no-touch .navbar ul li:hover > a {
+    background: rgba(84,156,143,.5);    
+}
+
+h1 {
+margin-top: -15px;
+    cursor: pointer;
+    -webkit-transform: scale(1);
+    opacity: 1;
+    transition: all 400ms ease;
+    &.ptogg1.active {
+        -webkit-transform: scale(0);
+        opacity: 0;
+    }
+}
+
+p {
+    cursor: pointer;
+    -webkit-transform: scale(0);
+    opacity: 0;
+    margin-top: -90px;
+    transition: all 400ms ease;
+    &.ptogg1.active, &.ptogg2.active {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+}
+
+

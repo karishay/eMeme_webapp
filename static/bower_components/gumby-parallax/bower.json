@@ -1,0 +1,5 @@
+{
+  "name": "gumby-parallax",
+  "version": "1.2.0",
+  "main": ["./gumby.parallax.js", "./_parallax.scss"]
+}
