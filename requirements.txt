@@ -8,7 +8,11 @@ MarkupSafe==0.18
 SQLAlchemy==0.8.3
 WTForms==1.0.5
 Werkzeug==0.9.4
+cssselect==0.9.1
 gunicorn==18.0
 itsdangerous==0.23
+lxml==3.3.3
 pycparser==2.10
+pyquery==1.2.8
+requests==2.2.1
 wsgiref==0.1.2
