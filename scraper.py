@@ -24,36 +24,18 @@ def findImages(allTheThings):
 
 def findTags(memeBucket):
     """This function returns a list of """
-    allDogTags = []
+    allTags = []
     Ancestors = pq(memeBucket)
-    for doge in Ancestors:
-        doge = pq(doge)
-        if doge("img"):
-            dogeTags = []
-            listOfTagsPerDoge = doge('.tags ul li')
-            for tag in listOfTagsPerDoge:
+    for meme in Ancestors:
+        meme = pq(meme)
+        if meme("img"):
+            Tags = []
+            listOfTagsPerMeme = meme('.tags ul li')
+            for tag in listOfTagsPerMeme:
                 tagText = tag.text_content()
-                dogeTags.append(tagText)
-            allDogTags.append(dogeTags)
-    return allDogTags
- 
-
-
-# listOfLists = []
-# #go through the dirty file of the list of lists
-# for links in filthyDogeTags:
-#     listOfTagsPerDoge = []
-# #   for each list in the list loop through that list
-#     for link in links:
-#         #extract the link from the list
-#         tag = link.text_content()
-
-#         #extract the inner html of the link and add to list       
-#         listOfTagsPerDoge.append(tag)
-
-#     #add list of tags to list of lists
-#     listOfLists.append(listOfTagsPerDoge)
-# print listOfLists
+                Tags.append(tagText)
+            allTags.append(Tags)
+    return allTags
 
 
 keys = findImages(allTheThings)
