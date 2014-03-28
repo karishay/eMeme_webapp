@@ -1,11 +1,13 @@
 from py2neo import neo4j
 from py2neo import node, rel
+import scraper
 
 graph_db = neo4j.GraphDatabaseService("http://localhost:7474/db/data/")
 
 #############################################################
 ################## Class Declarations Here ##################
 #############################################################
+#call functions from scraper that return things with scraper.blah
 
 
 

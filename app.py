@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request, session, g, url_for
 from flask.ext.login import LoginManager, login_required, login_user, current_user
 from flask.ext.markdown import Markdown
 import config
+import os
 #may not need the forms.... maybe?
 
 import model
