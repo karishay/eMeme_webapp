@@ -2,28 +2,27 @@ import requests
 from lxml import html
 from pyquery import PyQuery as pq
 
-url = 'http://icanhas.cheezburger.com/tag/dogs/' 
-r = requests.get(url)
-allTheThings = pq(r.text)
+urls = ['http://icanhas.cheezburger.com/tag/dogs/', 
+        'http://icanhas.cheezburger.com/tag/cats/',
+        'http://roflrazzi.cheezburger.com/history'] 
 
 #####################################################
 ##### SOME HOW MAKE THIS SHIT INTO FUNCITONS ########
 #####################################################
 
-memeBucket = allTheThings('.post-asset-wrap')
-
-def findImages(allTheThings):
+def findImages(pageBody):
     """This function returns all the memes on the page"""
 
-    lolImages = allTheThings('.event-item-lol-image')
+    lolImages = pageBody('.event-item-lol-image')
     listOfImages = []
     for image in lolImages:
         listOfImages.append(image.get('src'))
     return listOfImages
 
 
-def findTags(memeBucket):
-    """This function returns a list of """
+def findTags(pageBody):
+    """This function returns a list of tags"""
+    memeBucket = pageBody('.post-asset-wrap')
     allTags = []
     Ancestors = pq(memeBucket)
     for meme in Ancestors:
@@ -38,12 +37,25 @@ def findTags(memeBucket):
     return allTags
 
 
-keys = findImages(allTheThings)
-values = findTags(memeBucket)
+#create a function that scrapes 
+def listOfDictsOfMemes(urls):
+    """This funciton returns a list of dictionaries 
+    with meme img keys and associated tag values."""
+    keys = []
+    values = []
+    for url in urls:        
+        r = requests.get(url)
+        pageBody = pq(r.text)
+        keys.extend(findImages(pageBody))
+        values.extend(findTags(pageBody))  
+        
+    dictOfMemes = dict(zip(keys, values))
+    
 
-dictOfMemes = dict(zip(keys, values))
+    return dictOfMemes
 
-print dictOfMemes
+
+print listOfDictsOfMemes(urls)
 
 ### # is ID
 ### . is Class
