@@ -54,9 +54,6 @@ def listOfDictsOfMemes(urls):
 
     return dictOfMemes
 
-
-print listOfDictsOfMemes(urls)
-
 ### # is ID
 ### . is Class
 ### a is TagName (the tagname <a>)
