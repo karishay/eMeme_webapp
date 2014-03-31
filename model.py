@@ -109,6 +109,7 @@ def createTables():
 
 def main():
     """In case we need this for something."""
+    createTables()
 
 
 if __name__ == "__main__":
