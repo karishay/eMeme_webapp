@@ -9,6 +9,18 @@ store = ogm.Store(graph_db)
 #############################################################
 ####### functions to create Nodes and Relationships #########
 #############################################################
+#check to see if user token is in the database
+def logInOrCreateUser(access_token):
+    users = graph_db.get_or_create_index(neo4j.Node, "Users")
+    perhapsUser = users.get("access_token", access_token)
+    if len(perhapsUser) == 1:
+        return access_token
+    else:
+        user = users.get_or_create("access_token", access_token, {
+            "access_token": access_token
+            })
+        user.add_labels("USER")
+        return access_token
 
 def createImgNode(memeDict):
     """Description: Creates img nodes and assigns appropriated tagged 

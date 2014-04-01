@@ -41,6 +41,15 @@
 	<script src="static/bower_components/gumby/js/libs/modernizr-2.6.2.min.js"></script>
 </head>
 
+<!-- added Google+ Javascript for signin button -->
+<script type="text/javascript">
+  (function() {
+   var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+   po.src = 'https://apis.google.com/js/client:plusone.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+ })();
+</script>
+
 <body>
 	<!--///////////// ______________________________\\\\\\\\\\\\ -->
 	<!--///////////// ______________________________\\\\\\\\\\\\ -->
@@ -93,7 +102,17 @@
 	<div class="container">
 		<div class="margins">
 			<div class="article">
-				<fieldset>
+						<center><button id="signinButton" class="g-signin"
+				        data-scope="https://www.googleapis.com/auth/plus.login"
+				        data-clientid="403952788560.apps.googleusercontent.com"
+				        data-callback="signinCallback"
+				        data-theme="dark"
+				        data-cookiepolicy="single_host_origin"
+				        data-requestvisibleactions="http://schemas.google.com/AddActivity"
+				        data-width="wide">
+				    	</button></center>
+<!-- may not need this login field. 				
+<fieldset>
 				  <legend>Login</legend>
 					  <ul>
 					    <li class="field">
@@ -106,8 +125,8 @@
 					      </label>
 					      <input class="wide password input" id="password" type="password" placeholder="password" />
 					    </li>
-					  </ul>
-				</fieldset>
+				  </ul>
+				</fieldset> -->
 
 			</div>	
 		</div>
@@ -152,6 +171,73 @@
 	}
 	</script>
 
+	<script type="text/javascript" >
+
+	function signinCallback(authResult) {
+	  if (authResult['access_token']) {
+	    // Successfully authorized
+	    // document.getElementById('signinButton').setAttribute('style', 'display: none');
+	    console.log(authResult['access_token']);
+	    $.ajax({
+			url: "/login",
+			method: "POST",
+			data: {access_token: authResult['access_token']},
+			success: function (response){
+				console.log(response);
+			}
+		});
+	    //send an ajax request to the python server with the access token
+		gapi.client.load('plus','v1', function(){ 
+			// once we get this call back, gapi.client.plus.* will exist
+		});
+	  } else if (authResult['error']) {
+	    // There was an error.
+	    // Possible error codes:
+	    //   "access_denied" - User denied access to your app
+	    //   "immediate_failed" - Could not automatially log in the user
+	    // console.log('There was an error: ' + authResult['error']);
+	  }
+	}
+	function disconnectUser(access_token) {
+	  var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=' +
+	      access_token;
+
+	  // Perform an asynchronous GET request.
+	  $.ajax({
+	    type: 'GET',
+	    url: revokeUrl,
+	    async: false,
+	    contentType: "application/json",
+	    dataType: 'jsonp',
+	    success: function(nullResponse) {
+	      // Do something now that user is disconnected
+	      // The response is always undefined.
+	    },
+	    error: function(e) {
+	      // Handle the error
+	      // console.log(e);
+	      // You could point users to manually disconnect if unsuccessful
+	      // https://plus.google.com/apps
+	    }
+	  });
+	}
+	// Could trigger the disconnect on a button click
+	$('#revokeButton').click(disconnectUser);
+
+	
+
+	var	profile = function(){
+	    var user = gapi.client.plus.people.get( {'userId' : 'me'} );
+	    user.execute(function(profile){
+	      $('#profile').append(
+	            $('<p><img src=\"' + profile.image.url + '\"></p>')
+	        );
+	      $('#profile').append(
+	            $('<p>Hello ' + profile.displayName + '</p>')
+	      ); 
+	   });
+	}
+	</script>
 
 	<!--
 	Google's recommended deferred loading of JS
@@ -174,6 +260,7 @@
 	// 	else if (window.attachEvent)
 	// 		window.attachEvent("onload", downloadJSAtOnload);
 	// 	else window.onload = downloadJSAtOnload;
+
 	// </script>
 
 
