@@ -16,4 +16,4 @@ pycparser==2.10
 pyquery==1.2.8
 requests==2.2.1
 wsgiref==0.1.2
-py2neo==1.5
+py2neo==1.6.4
