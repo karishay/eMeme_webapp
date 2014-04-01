@@ -1,5 +1,6 @@
 from py2neo import neo4j
 from py2neo import node, rel, ogm
+from py2neo import cypher
 from neomodel import (StructuredNode, StructuredRel, StringProperty, FloatProperty, IntegerProperty,
     Relationship, RelationshipTo, RelationshipFrom)
 import scraper
@@ -52,13 +53,15 @@ class User(StructuredNode):
 # define class for Tag Nodes
 class Tag(StructuredNode):
     """ Tag node creates new tags in Neo4j"""
-    tagName = StringProperty(unique_index=True)
+    tagName = StringProperty(unique_index=True, required=True)
+    tagIndex = IntegerProperty(unique_index=True)
 
 # define class for Img Nodes
 class Img(StructuredNode):
     """Img node stores src for each meme img with aggregate 
     weight of all selections"""
-    imgSrc = StringProperty(unique_index=True, required=True)
+    imgIndex = StringProperty(unique_index=True)
+    imgSrc = StringProperty(required=True)
     aggregateImgWeight = FloatProperty()
     imgTags = Relationship('Tag', 'TAGGED', model=TaggedRelationship)
 
@@ -73,22 +76,34 @@ def createGraph(memeDict):
     images = []
     tags = []
     for img in memeDict:
+        #so this part is working properly as it has added images notes to the 
         imgNode = Img(imgSrc=img, aggregateImgWeight=0).save()
+        imgNode.refresh()
         
         for tag in memeDict[img]:
-            #check if tag exists already
-            if Tag.index.get(tagName=tag):
-                #increment
-                taggedRelationship.aggregateImgTagWeight += 1 
-            #or create new tag
-            else:
-                #created the tag 
+            #check if tag exists already in the database (this part is not working)
+            if not Tag.index.search(tagName=tag):
+                     #created the tag 
                 tagNode = Tag(tagName=tag).save()
-                #connect it to the img with the relationship
-                taggedRelationship = imgNode.tagged.connect(tagNode)
-                #and set the aggregate weight = 1
-                taggedRelationship.aggregateImgTagWeight = 1 
-            return "The createGraph function ran! Check DB to see if it worked."
+                tagNode.refresh()
+                print tagNode
+                #connect it to the img with the relationship (write this one as a cypher query)
+                query = "MATCH (i:'{imgNode}'), (t:'{tagNode}') CREATE (i)-[r:TAGGED]->(t) RETURN r"
+                params = {'imgNode': dir(imgNode.imgIndex, 'tagNode':tagNode.tagName}
+                print params
+                taggedRelationship = cypher.execute(graph_db, query, params)
+                print taggedRelationship
+
+         
+            else:
+                query = "MATCH ()-[r:TAGGED]-() return r"
+                taggedRelationship = cypher.execute(graph_db, query)
+                print "This is the tagged relationship[0]", taggedRelationship[0]
+                # cypher_query.append(query, params)
+                #params = dictionary of parameters (properties)
+                # taggedRelationship.aggregateImgTagWeight += 1
+                # taggedRelationship.commit
+    return "The createGraph function ran! Check DB to see if it worked."
 
 
 
