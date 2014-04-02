@@ -21,10 +21,14 @@ def index():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    access_token = request.form.get("access_token")
-    graphModel.logInOrCreateUser(access_token)
+    userId = request.form.get("userId")
+    name = request.form.get("name")
+    gender = request.form.get("gender")
+    language = request.form.get("language")
+    profileImg = request.form.get("profileImg")
+    userProfileData = [userId, name, gender, language, profileImg]
+    graphModel.logInOrCreateUser(userProfileData)
     #if they are logged in put their user id in the session
-    # print request.form.get("access_token")
 #get a token to print here by posting
 #then talk to liz about assigning to a user and keeping in a session
     return render_template("login.html")

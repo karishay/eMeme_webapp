@@ -10,17 +10,30 @@ store = ogm.Store(graph_db)
 ####### functions to create Nodes and Relationships #########
 #############################################################
 #check to see if user token is in the database
-def logInOrCreateUser(access_token):
+def logInOrCreateUser(userProfileData):
+    """ Description: Logs in user if existing, creates new user if not.
+        Params:userProfileData is a list of data from google 
+        plus to populate the user nodes
+        Returns: user id string"""
+        
     users = graph_db.get_or_create_index(neo4j.Node, "Users")
-    perhapsUser = users.get("access_token", access_token)
-    if len(perhapsUser) == 1:
-        return access_token
+    perhapsUser = users.get("userId", userProfileData[0])
+    print perhapsUser
+    print len(perhapsUser)
+    if len(perhapsUser) > 1:
+        perhapsProp = perhapsUser[0]._properties
+        pToken = perhapsProp.get("userId")
+        return userProfileData
     else:
-        user = users.get_or_create("access_token", access_token, {
-            "access_token": access_token
+        user = users.get_or_create("userId", userProfileData[0], {
+            "userId": userProfileData[0],
+            "name": userProfileData[1],
+            "gender": userProfileData[2],
+            "language": userProfileData[3],
+            "profileImg": userProfileData[4]
             })
         user.add_labels("USER")
-        return access_token
+        return userProfileData
 
 def createImgNode(memeDict):
     """Description: Creates img nodes and assigns appropriated tagged 

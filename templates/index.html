@@ -172,24 +172,44 @@
 	</script>
 
 	<script type="text/javascript" >
-
-	function signinCallback(authResult) {
-	  if (authResult['access_token']) {
-	    // Successfully authorized
-	    // document.getElementById('signinButton').setAttribute('style', 'display: none');
-	    console.log(authResult['access_token']);
+	function loginOrAddUser(authResult, profile){
 	    $.ajax({
 			url: "/login",
 			method: "POST",
-			data: {access_token: authResult['access_token']},
+			data: {access_token: authResult['access_token'],
+					userId: profile.id,
+					name: profile.displayName,
+					gender: profile.gender,
+					language: profile.language,
+					profileImg: profile.image.url
+					},
 			success: function (response){
 				console.log(response);
 			}
 		});
+	};
+
+
+	function loadCallback(authResult) {
+	  if (authResult['access_token']) {
+	    // Successfully authorized
+	    // document.getElementById('signinButton').setAttribute('style', 'display: none');
+	    console.log(authResult['access_token']);
+	    // get profile data from g+
+	    user = gapi.client.plus.people.get({'userId':'me'});
+	    user.execute(function(userData){
+	    	//set userProfile data globally
+	    	userProfile = userData;
+	    	//call ajax function here
+	    	loginOrAddUser(authResult, userData);
+	    })
+	    	// inside the profile callback, now taht
+	    	//  you have the profile data, you can call
+	    	//  your /login ajax with that data
+
+
 	    //send an ajax request to the python server with the access token
-		gapi.client.load('plus','v1', function(){ 
-			// once we get this call back, gapi.client.plus.* will exist
-		});
+
 	  } else if (authResult['error']) {
 	    // There was an error.
 	    // Possible error codes:
@@ -198,6 +218,16 @@
 	    // console.log('There was an error: ' + authResult['error']);
 	  }
 	}
+
+	function signinCallback(authResult) {
+	  	gapi.client.load('plus','v1', function(){ 
+		// once we get this call back, gapi.client.plus.* will exist
+			loadCallback(authResult);
+		});
+
+	}
+
+
 	function disconnectUser(access_token) {
 	  var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=' +
 	      access_token;
