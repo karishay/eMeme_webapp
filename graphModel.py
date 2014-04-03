@@ -1,7 +1,7 @@
 from py2neo import neo4j
 from py2neo import node, rel, ogm
 from py2neo import cypher
-from random import randint
+import random
 import scraper
 
 graph_db = neo4j.GraphDatabaseService("http://localhost:7476/db/data/")
@@ -78,7 +78,7 @@ def getRandomImgUrl():
     # randNode = graph_db.node(randint(2000, 3000))
     randNodeList = []
     for num in range(100):
-        randNodeList.append(graph_db.node(randint(2000, 2300)))
+        randNodeList.append(graph_db.node(random.randint(2000, 2300)))
 
     for randNode in randNodeList:
         if not randNode.exists:
@@ -94,7 +94,7 @@ def findsTagsByImg(imgDict):
     """ Description: Finds all related tags for each image
         Params: imgDict, dictionary of img node id's and img urls
         Returns: list of all related tags for that image """
-        
+
     imgNodeId = imgDict.get("nodeId") 
     imgNode = graph_db.node(imgNodeId)
     tagRelList = list(graph_db.match(start_node=imgNode))
@@ -105,6 +105,43 @@ def findsTagsByImg(imgDict):
         tagName = tagProperties.get("tagName")
         tagList.append(tagName)
     return tagList
+
+def retrieveImages(tag):
+    """ Description: Selects three semi random memes associated
+                    with the given tag accounting for strength of 
+                    meme-tag correlations.
+        Params: tag, string that describes image
+        Returns: string, img url """
+    #find the tag node by tag name
+    tags = graph_db.get_or_create_index(neo4j.Node, "Tags")
+    tagNode = tags.get("tagName", tag)
+    #find the TAGGED relationships
+    rels = tagNode[0].match()
+    imgNodeDict = {}
+    #loop through the relationships 
+    for rel in rels:
+        #save the image urls and related weights to a dictionary
+        imgNode = rel.start_node
+        relWeight = rel.get_properties().get("aWeight")
+        imgNodeDict[imgNode.get_properties().get("imgSrc")] = relWeight
+    imgUrlList = []
+    #iterate over the dictionary of urls to weights
+    for imgSrc, imgWeight in imgNodeDict.iteritems():
+        #add the url to the list for every weight
+        imgUrlList.extend([imgSrc] * imgWeight)
+    #randomly choose a url from the list
+    threeTaggedImages = []
+    #add three distinct random images accounting for weight
+    img = random.choice(imgUrlList)
+    while len(threeTaggedImages) != 3:
+        if img not in threeTaggedImages:
+            threeTaggedImages.append(img)
+        else:
+            img = random.choice(imgUrlList)
+    #return list of three images
+    return threeTaggedImages
+
+
 
 #############################################################
 ##################### functions #############################

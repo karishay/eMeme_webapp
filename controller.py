@@ -57,6 +57,7 @@ def improveSuggestions():
 @app.route("/findPerfectMeme", methods=["GET", "POST"])
 def findPerfectMeme():
     #TODO: add functionality to return meme with db calls.
+    
     # name = #get user name from session?
     # memeList = #make a function in graph model that returns a list of meme urls
                 #given the tags from the previous page
