@@ -1,31 +1,53 @@
     
-    <h1>Improve suggested memes</h1>
-    <h2>By tagging memes with associated words the eMeme algorithm will learn your preferences and produce better results!</h2>
+    <h2>Improve suggested memes</h2>
+    <h4>By tagging memes with associated words the eMeme algorithm will learn your preferences and produce better results!</h4>
     <div class="row">
       <section class="twelve columns">
         <article class="valign row">
           <div>
-            <img src="{{urlOne}}" width="200" height="300"/>
+            <img src="{{urlOne}}" width="200" height="400"/>
           </div>
           <div>
             <ul>
             {% for tag in tagListOne %}
-              <h4><li><a href="#">{{ tag }}</a></li></h4>
+                <div class="medium primary btn">
+                <a href="#" id="tag">{{ tag }}</a>
+                </div>
             {% endfor %}
+                <br>
+                <br>
+                <li class="prepend append field">
+                    <span class="adjoined">add your own tag:</span>
+                    <input class="normal text input" type="text" placeholder="Put your text here!" />
+                    <div class="small primary btn">
+                        <a href="#" id="finPerMem">tag</a>
+                    </div>
+                </li>
             </ul>
-            <p>or perhaps here? Maybe even buttons. Wow.</p>
           </div>
         </article>
         <article class="valign row">
           <div>
-            <img src="{{urlTwo}}" width="200" height="300"/>
+            <img src="{{urlTwo}}" width="200" height="400"/>
           </div>
           <div>
             <ul>
             {% for tag in tagListTwo %}
-              <h4><li><a href="#">{{ tag }}</a></li></h4>
+                <div class="medium primary btn">
+                <a href="#" id="tag">{{ tag }}</a>
+                </div>
             {% endfor %}
+                <br>
+                <br>
+                <li class="prepend append field">
+                    <span class="adjoined">add your own tag:</span>
+                    <input class="normal text input" type="text" placeholder="Put your text here!" />
+                    <div class="small primary btn">
+                        <a href="#" id="finPerMem">tag</a>
+                    </div>
+                </li>
             </ul>
+
           </div>
         </article>
       </section>

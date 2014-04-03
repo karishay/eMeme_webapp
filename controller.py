@@ -28,15 +28,10 @@ def login():
     profileImg = request.form.get("profileImg")
     userProfileData = [userId, name, gender, language, profileImg]
     graphModel.logInOrCreateUser(userProfileData)
-    #if they are logged in put their user id in the session
-#get a token to print here by posting
-#then talk to liz about assigning to a user and keeping in a session
     return render_template("login.html")
 
-#TODO: make two different routes that return pertinent data to contstruct related pages
 @app.route("/improveSuggestions", methods=["GET"])
 def improveSuggestions():
-    #TODO: get images at random from database and their associated tags
     tag = request.form.get("tag")
     imgDictOne = graphModel.getRandomImgUrl()
     urlOne = imgDictOne.get("imgUrl")
@@ -45,21 +40,28 @@ def improveSuggestions():
     tagListOne = graphModel.findsTagsByImg(imgDictOne)
     tagListTwo = graphModel.findsTagsByImg(imgDictTwo)
 
-    #TODO: build out the improveSuggestions.html jinja ajax insertion template
     return render_template('improveSuggestions.html', urlOne=urlOne, 
                                                     urlTwo=urlTwo, 
                                                     tagListOne=tagListOne, 
                                                     tagListTwo=tagListTwo)
 
 #TODO: Make new route that handle added or clicked tags (send to db)
-# @app.route()
-#user request.form.get("tag") from ajax to send to DB 
+# @app.route("/improveSuggestions", methods=["POST"])
+# def improveSuggestions():
+#     #get the tags from the previous page
+#     #change the weight of the tagged relationship
+#     #make an ajax call that removes the tag and tells the user they've added it
+#     pass
+# #user request.form.get("tag") from ajax to send to DB 
 
 @app.route("/findPerfectMeme", methods=["GET", "POST"])
 def findPerfectMeme():
     #TODO: add functionality to return meme with db calls.
+    # name = #get user name from session?
+    # memeList = #make a function in graph model that returns a list of meme urls
+                #given the tags from the previous page
     #TODO: build out the findPerfectMeme.html jinja ajax insertion template
-    return render_template('findPerfectMeme.html')
+    return render_template('findPerfectMeme.html', name=name, memeList=memeList)
 
 ###some other stuff###
 if __name__ == "__main__":
