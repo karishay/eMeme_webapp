@@ -5,26 +5,20 @@
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 <!--[if IE 9]>    <html class="no-js ie9" lang="en"> <![endif]-->
 <!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
-<!--[if gt IE 9]><!--> <html class="no-js" lang="en" itemscope="" itemtype="http://schema.org/Product"> <!--<![endif]-->
+<!--[if gt IE 9]><!--> 
+<html class="no-js" lang="en" itemscope="" itemtype="http://schema.org/Product"> 
+<!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-
-	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
-			 More info: h5bp.com/b/378 -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 	<title>eMeme | Find the perfect Meme</title>
+
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="humans.txt">
 
 	<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-
-	<!-- Facebook Metadata /-->
-	<meta property="fb:page_id" content="">
-	<meta property="og:image" content="">
-	<meta property="og:description" content="">
-	<meta property="og:title" content="">
 
 	<!-- Google+ Metadata /-->
 	<meta itemprop="name" content="">
@@ -33,15 +27,14 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-	<!-- We highly recommend you use SASS and write your custom styles in sass/_custom.scss.
-		 However, there is a blank style.css in the css directory should you prefer -->
 	<link rel="stylesheet" href="static/css/gumby.css">
-	<!-- <link rel="stylesheet" href="css/style.css"> -->
 
-	<script src="static/bower_components/gumby/js/libs/modernizr-2.6.2.min.js"></script>
+	<script src="static/bower_components/gumby/js/libs/modernizr-2.6.2.min.js">
+	</script>
 </head>
 
 <!-- added Google+ Javascript for signin button -->
+
 <script type="text/javascript">
   (function() {
    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
@@ -57,121 +50,116 @@
 	<!--///////////// ______________________________\\\\\\\\\\\\ -->
 	<!--///////////// ______________________________\\\\\\\\\\\\ -->
 
-<div class="navbar fixed" id="nav1" >
-  <!-- Toggle for mobile navigation, targeting the <ul> -->
-  <div class="row">
-	  <a class="toggle" gumby-trigger="#nav1 > .row > ul" href="#"><i class="icon-menu"></i></a>
-	  <h1 class="four columns logo">
-	    <a href="#">
-	      <img src="static/img/icons/eMeme128.png" />
-	    </a>
-	  </h1>
-	  <ul class="eight columns">
-	    <li class="skiplink"><a href="#" gumby-goto="#Login" gumby-duration="2000">Login</a></li>
-	    <li class="skiplink"><a href="#" gumby-goto="#Register" gumby-duration="2000">Register</a></li>
-	    <li class="skiplink"><a href="#" gumby-goto="#Download" gumby-duration="2000">Download</a></li>
-	  </ul>
+	<div class="navbar fixed" id="nav1" id="personalize" >
+	  <div class="row">
+		  <a class="toggle" gumby-trigger="#nav1 > .row > ul" href="#"><i class="icon-menu"></i></a>
+		  <h1 class="four columns logo">
+		    <a href="#">
+		      <img src="static/img/icons/eMeme128.png" />
+		    </a>
+		  </h1>
+		  <ul class="eight columns">
+		    <li class="skiplink">
+		    	<a href="#" gumby-goto="#Login" gumby-duration="2000">Login</a>
+		    </li>
+		    <li class="skiplink">
+		    	<a href="#" gumby-goto="#Register" gumby-duration="2000">Register</a>
+		    </li>
+		    <li class="skiplink">
+		    	<a href="#" gumby-goto="#Download" gumby-duration="2000">Download</a>
+		    </li>
+		  </ul>
+		</div>
 	</div>
-</div>
 
 	<!--///////////// ______________________________\\\\\\\\\\\\ -->
 	<!--///////////////// this is my landing bar  \\\\\\\\\\\\\\ -->
 	<!--///////////// ______________________________\\\\\\\\\\\\ -->
 
-<section class="parallax" gumby-parallax='.5' gumby-offset="-20" id="Download">
-	<div class="container">
-		<div class="margins" id="landingBar">
-			<div class="article">
-				<header>
-					<h1 class="toggle ptogg1" gumby-trigger=".ptogg1">
-						Find the perfect meme
-					</h1>
-					<p class="toggle ptogg1" gumby-trigger=".toggle" >
-						You know how I sometimes have really brilliant ideas? No… It's a thing; it's like a plan, but with more greatness. I am the Doctor, and you are the Daleks! Saving the world with meals on wheels.
-					</p>
-				</header>
-			</div>	
+	<section class="parallax" gumby-parallax='.5' gumby-offset="-20" id="Download">
+		<div class="container">
+			<div class="margins" id="landingBar">
+				<div class="article">
+					<header>
+						<h1 class="toggle ptogg1" gumby-trigger=".ptogg1">
+							Find the perfect meme
+						</h1>
+						<p class="toggle ptogg1" gumby-trigger=".toggle" >
+							You know how I sometimes have really brilliant ideas? No… It's a thing; it's like a plan, but with more greatness. I am the Doctor, and you are the Daleks! Saving the world with meals on wheels.
+						</p>
+					</header>
+				</div>	
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
-	<!--///////////// ______________________________\\\\\\\\\\\\ -->
-	<!--///////////// I am putting my login form here \\\\\\\\\\ -->
-	<!--///////////// ______________________________\\\\\\\\\\\\ -->
-<section class="parallax" gumby-parallax='.5' gumby-offset="64" id="Login">
-	<div class="container">
-		<div class="margins">
-			<div class="article">
-						<center><button id="signinButton" class="g-signin"
-				        data-scope="https://www.googleapis.com/auth/plus.login"
-				        data-clientid="403952788560.apps.googleusercontent.com"
-				        data-callback="signinCallback"
-				        data-theme="dark"
-				        data-cookiepolicy="single_host_origin"
-				        data-requestvisibleactions="http://schemas.google.com/AddActivity"
-				        data-width="wide">
-				    	</button></center>
-<!-- may not need this login field. 				
-<fieldset>
-				  <legend>Login</legend>
-					  <ul>
-					    <li class="field">
-					      <label class="inline" for="email address">Email Address
-					      </label>
-					      <input class="wide text input" id="email address" type="text" placeholder="email address" />
-					    </li>
-					    <li class="field">
-					      <label class="inline" for="password">Password
-					      </label>
-					      <input class="wide password input" id="password" type="password" placeholder="password" />
-					    </li>
-				  </ul>
-				</fieldset> -->
-
-			</div>	
+	<section class="parallax" gumby-parallax='.5' gumby-offset="64" id="Login">
+		<div class="container">
+			<div class="margins">
+				<div class="article">
+					<center>
+						<button 
+							id="signinButton" 
+							class="g-signin"
+					        data-scope="https://www.googleapis.com/auth/plus.login"
+					        data-clientid="403952788560.apps.googleusercontent.com"
+					        data-callback="signinCallback"
+					        data-theme="dark"
+					        data-cookiepolicy="single_host_origin"
+					        data-requestvisibleactions="http://schemas.google.com/AddActivity"
+					        data-width="wide">
+				    	</button>
+			    	</center>
+				</div>	
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
-<!-- this is a temporary and janky fix- if there's time, disconnent the Register and Download toggle connection. Right now they are calling each other. -->
-<section class="parallax" gumby-parallax='.5' gumby-offset="-20" id="Register">
-	<div class="container">
-		<div class="margins" id="landingBar">
-			<div class="article">
-				<header>
-					<h1 class="toggle ptogg1" gumby-trigger=".ptogg1">
-						Find the perfect meme
-					</h1>
-					<p class="toggle ptogg1" gumby-trigger=".toggle" >
-						You know how I sometimes have really brilliant ideas? No… It's a thing; it's like a plan, but with more greatness. I am the Doctor, and you are the Daleks! Saving the world with meals on wheels.
-					</p>
-				</header>
-			</div>	
+<!-- TODO: this is a temporary and janky fix- if there's time, disconnent the Register and Download toggle connection. Right now they are calling each other. -->
+
+	<section class="parallax" gumby-parallax='.5' gumby-offset="-20" id="Register">
+		<div class="container">
+			<div class="margins" id="landingBar">
+				<div class="article" id="postLoginPage">
+					<header>
+						<h1 class="toggle ptogg1" gumby-trigger=".ptogg1">
+							Find the perfect meme
+						</h1>
+						<p class="toggle ptogg1" gumby-trigger=".toggle" >
+							You know how I sometimes have really brilliant ideas? No… It's a thing; it's like a plan, but with more greatness. I am the Doctor, and you are the Daleks! Saving the world with meals on wheels.
+						</p>
+					</header>
+				</div>	
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
 	<!-- Grab Google CDN's jQuery, fall back to local if offline -->
 	<!-- 2.0 for modern browsers, 1.10 for .oldie -->
 	<script>
 	var oldieCheck = Boolean(document.getElementsByTagName('html')[0].className.match(/\soldie\s/g));
 	if(!oldieCheck) {
-	document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"><\/script>');
+		document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"><\/script>');
 	} else {
-	document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"><\/script>');
+		document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"><\/script>');
 	}
 	</script>
 	<script>
 	if(!window.jQuery) {
-	if(!oldieCheck) {
-	  document.write('<script src="bower_components/gumby/js/libs/jquery-2.0.2.min.js"><\/script>');
-	} else {
-	  document.write('<script src="bower_components/gumby/js/libs/jquery-1.10.1.min.js"><\/script>');
-	}
+		if(!oldieCheck) {
+		  document.write('<script src="bower_components/gumby/js/libs/jquery-2.0.2.min.js"><\/script>');
+		} else {
+		  document.write('<script src="bower_components/gumby/js/libs/jquery-1.10.1.min.js"><\/script>');
+		}
 	}
 	</script>
 
 	<script type="text/javascript" >
+
+	$(document).ready(function(){
+		// put things here if you want something to run when the page first finished loading.
+	});
+
 	function loginOrAddUser(authResult, profile){
 	    $.ajax({
 			url: "/login",
@@ -184,31 +172,47 @@
 					profileImg: profile.image.url
 					},
 			success: function (response){
-				console.log(response);
+				$(document.getElementsByTagName("section")[0]).hide();
+				$(document.getElementsByTagName("section")[1]).hide();
+				$("#postLoginPage").html(response);
+				$("#impSug").on("click", function(e){
+					e.preventDefault();
+					improveMemeSuggestions();
+				});
+				$("#finPerMem").on("click", function(e){
+					e.preventDefault();
+					//TODO: Add function to call here! (ajax call)
+				})
+				//TODO: use jquery to change the nav bar to show the profile pic and welcome with name
+				// $(".navbar").personalize();
 			}
 		});
 	};
 
+	function improveMemeSuggestions(){
+	    $.ajax({
+			url: "/improveSuggestions",
+			method: "GET",
+			success: function (response){
+				$(document.getElementsByTagName("section")[0]).hide();
+				$(document.getElementsByTagName("section")[1]).hide();
+				$("#postLoginPage").html(response);
+				//TODO: add event listeners here to listen to the forms (when users submit tags) treat individual tag clicks as form submissions.
+			}
+		});
+	};
 
 	function loadCallback(authResult) {
 	  if (authResult['access_token']) {
 	    // Successfully authorized
-	    // document.getElementById('signinButton').setAttribute('style', 'display: none');
 	    console.log(authResult['access_token']);
 	    // get profile data from g+
 	    user = gapi.client.plus.people.get({'userId':'me'});
 	    user.execute(function(userData){
 	    	//set userProfile data globally
 	    	userProfile = userData;
-	    	//call ajax function here
 	    	loginOrAddUser(authResult, userData);
 	    })
-	    	// inside the profile callback, now taht
-	    	//  you have the profile data, you can call
-	    	//  your /login ajax with that data
-
-
-	    //send an ajax request to the python server with the access token
 
 	  } else if (authResult['error']) {
 	    // There was an error.
@@ -227,7 +231,7 @@
 
 	}
 
-
+	//TODO: add logout functionality with page redirects and routes if needed
 	function disconnectUser(access_token) {
 	  var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=' +
 	      access_token;
@@ -251,61 +255,29 @@
 	    }
 	  });
 	}
-	// Could trigger the disconnect on a button click
+	//TODO: add button with id revokeButton to disconnect user
 	$('#revokeButton').click(disconnectUser);
 
 	
 
-	var	profile = function(){
+	var	personalize = function(){
 	    var user = gapi.client.plus.people.get( {'userId' : 'me'} );
-	    user.execute(function(profile){
+	    user.execute(function(personalize){
 	      $('#profile').append(
-	            $('<p><img src=\"' + profile.image.url + '\"></p>')
+	            $('<p><img src=\"' + personalize.image.url + '\"></p>')
 	        );
 	      $('#profile').append(
-	            $('<p>Hello ' + profile.displayName + '</p>')
+	            $('<p>Hello ' + personalize.displayName + '</p>')
 	      ); 
 	   });
 	}
 	</script>
 
-	<!--
-	Google's recommended deferred loading of JS
-	gumby.min.js contains gumby.js, all UI modules and gumby.init.js 
-
-	Note: If you opt to use this method of defered loading,
-	ensure that any javascript essential to the initial
-	display of the page is included separately in a normal
-	script tag.-->
-
-	// <script type="text/javascript">
-	// 	function downloadJSAtOnload() {
-	// 		var element = document.createElement("script");
-	// 		element.src = "js/gumby.min.js";
-	// 		document.body.appendChild(element);
-	// 	}
-
-	// 	if (window.addEventListener)
-	// 		window.addEventListener("load", downloadJSAtOnload, false);
-	// 	else if (window.attachEvent)
-	// 		window.attachEvent("onload", downloadJSAtOnload);
-	// 	else window.onload = downloadJSAtOnload;
-
-	// </script>
-
-
 	<script src="static/bower_components/gumby/js/plugins.js"></script>
 	<script src="static/js/gumby.min.js"></script>
 	<script src="static/bower_components/gumby/js/main.js"></script>
 
-	<!-- Change UA-XXXXX-X to be your site's ID -->
-	<!--<script>
-	window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
-	Modernizr.load({
-	  load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-	});
-	</script>-->
-
+	
 	<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
 	   chromium.org/developers/how-tos/chrome-frame-getting-started -->
 	<!--[if lt IE 7 ]>

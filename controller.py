@@ -33,11 +33,34 @@ def login():
 #then talk to liz about assigning to a user and keeping in a session
     return render_template("login.html")
 
+#TODO: make two different routes that return pertinent data to contstruct related pages
+@app.route("/improveSuggestions", methods=["GET"])
+def improveSuggestions():
+    #TODO: get images at random from database and their associated tags
+    tag = request.form.get("tag")
+    imgDictOne = graphModel.getRandomImgUrl()
+    urlOne = imgDictOne.get("imgUrl")
+    imgDictTwo = graphModel.getRandomImgUrl()
+    urlTwo = imgDictTwo.get("imgUrl")
+    tagListOne = graphModel.findsTagsByImg(imgDictOne)
+    tagListTwo = graphModel.findsTagsByImg(imgDictTwo)
 
-#create more routes that actually get things from the 
-#graphModel and sends them back to templates
+    #TODO: build out the improveSuggestions.html jinja ajax insertion template
+    return render_template('improveSuggestions.html', urlOne=urlOne, 
+                                                    urlTwo=urlTwo, 
+                                                    tagListOne=tagListOne, 
+                                                    tagListTwo=tagListTwo)
 
-    # http://localhost:5000/oauth2callback
+#TODO: Make new route that handle added or clicked tags (send to db)
+# @app.route()
+#user request.form.get("tag") from ajax to send to DB 
+
+@app.route("/findPerfectMeme", methods=["GET", "POST"])
+def findPerfectMeme():
+    #TODO: add functionality to return meme with db calls.
+    #TODO: build out the findPerfectMeme.html jinja ajax insertion template
+    return render_template('findPerfectMeme.html')
+
 ###some other stuff###
 if __name__ == "__main__":
     app.run(debug=True)

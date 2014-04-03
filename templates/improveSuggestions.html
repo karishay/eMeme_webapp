@@ -1,0 +1,32 @@
+    
+    <h1>Improve suggested memes</h1>
+    <h2>By tagging memes with associated words the eMeme algorithm will learn your preferences and produce better results!</h2>
+    <div class="row">
+      <section class="twelve columns">
+        <article class="valign row">
+          <div>
+            <img src="{{urlOne}}" width="200" height="300"/>
+          </div>
+          <div>
+            <ul>
+            {% for tag in tagListOne %}
+              <h4><li><a href="#">{{ tag }}</a></li></h4>
+            {% endfor %}
+            </ul>
+            <p>or perhaps here? Maybe even buttons. Wow.</p>
+          </div>
+        </article>
+        <article class="valign row">
+          <div>
+            <img src="{{urlTwo}}" width="200" height="300"/>
+          </div>
+          <div>
+            <ul>
+            {% for tag in tagListTwo %}
+              <h4><li><a href="#">{{ tag }}</a></li></h4>
+            {% endfor %}
+            </ul>
+          </div>
+        </article>
+      </section>
+    </div>
