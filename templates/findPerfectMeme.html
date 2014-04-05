@@ -1,17 +1,22 @@
     
-    <h1> Hey, {{ name }} here's some memes! </h1>
+    <h2> Hey, {{ name }} here's some memes! </h2>
+    {% if not errorHandler %}
         {% for meme in memeList %}
-            <a href="{{meme}}" id="meme">{{ meme }}</a>
+            <img src="{{meme}}" id="meme"><h4>{{ meme }}<h4></img>
         {% endfor %}
+    {% endif %}
+        <h3>{{ errorHandler }}</h3>
+    </br>
+    </br>
     <div class="medium primary btn">
-        <a href="/improveSuggestions">improve my suggestions</a>
+        <a href="#" id="impSug">improve my suggestions</a>
     </div>
     </br>
     </br>
     <li class="prepend append field">
-        <span class="adjoined">Naw, bro Find More:</span>
-        <input class="normal text input" type="text" placeholder="Put your text here!" />
+        <span class="adjoined" >Naw, bro Find More:</span>
+        <input class="normal text input" type="text" placeholder="Put your text here!" id="tag" />
         <div class="medium primary btn">
-            <a href="/findPerfectMeme">meme me!</a>
+            <a href="#" id="finPerMem">meme me!</a>
         </div>
     </li>

@@ -4,7 +4,10 @@ from pyquery import PyQuery as pq
 
 urls = ['http://icanhas.cheezburger.com/tag/dogs/', 
         'http://icanhas.cheezburger.com/tag/cats/',
-        'http://roflrazzi.cheezburger.com/history'] 
+        'http://roflrazzi.cheezburger.com/history',
+        'http://icanhas.cheezburger.com/tag/cute',
+        'http://failblog.cheezburger.com/tag/fail-nation',
+        ] 
 
 #####################################################
 ##### SOME HOW MAKE THIS SHIT INTO FUNCITONS ########
@@ -31,7 +34,7 @@ def findTags(pageBody):
             Tags = []
             listOfTagsPerMeme = meme('.tags ul li')
             for tag in listOfTagsPerMeme:
-                tagText = tag.text_content()
+                tagText = tag.text_content().lower()
                 Tags.append(tagText)
             allTags.append(Tags)
     return allTags

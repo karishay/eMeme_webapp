@@ -11,7 +11,7 @@
             <ul>
             {% for tag in tagListOne %}
                 <div class="medium primary btn">
-                <a href="#" id="tag">{{ tag }}</a>
+                <a href="#" class="tag" data-imgurl="{{urlOne}}" data-tagname="{{tag}}">{{ tag }}</a>
                 </div>
             {% endfor %}
                 <br>
@@ -34,7 +34,7 @@
             <ul>
             {% for tag in tagListTwo %}
                 <div class="medium primary btn">
-                <a href="#" id="tag">{{ tag }}</a>
+                <a href="#" id="tag" data-imgUrl="{{urlTwo}}" data-tagname="{{tag}}">{{ tag }}</a>
                 </div>
             {% endfor %}
                 <br>

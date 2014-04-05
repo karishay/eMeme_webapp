@@ -181,6 +181,7 @@
 				});
 				$("#finPerMem").on("click", function(e){
 					e.preventDefault();
+					findPerfectMeme();
 					//TODO: Add function to call here! (ajax call)
 				})
 				//TODO: use jquery to change the nav bar to show the profile pic and welcome with name
@@ -194,13 +195,56 @@
 			url: "/improveSuggestions",
 			method: "GET",
 			success: function (response){
-				$(document.getElementsByTagName("section")[0]).hide();
-				$(document.getElementsByTagName("section")[1]).hide();
 				$("#postLoginPage").html(response);
+				$(".tag").on("click", function(e){
+					e.preventDefault();
+
+					var tag = e.target.innerHTML;
+
+					var img = $(this).data("imgurl")
+					sendTagWeightToDB(tag, img)
+				})
 				//TODO: add event listeners here to listen to the forms (when users submit tags) treat individual tag clicks as form submissions.
 			}
 		});
 	};
+	//make another ajax function call and pass it the img url and the tag name
+	function sendTagWeightToDB(tag, imgurl){
+		$.ajax({
+			url: "/improveSuggestions",
+			method: "POST",
+			data: {
+				tagName: tag,
+				imgSrc: imgurl
+			},
+			success: function (response){
+				console.log(response);
+			}
+		})
+	}
+
+	function findPerfectMeme(){
+		$.ajax({
+			url: "/findPerfectMeme",
+			method: "GET",
+			data: {
+				tag: document.getElementById("tag").value
+			},
+			success: function (response){
+				$("#postLoginPage").html(response);
+				$("#impSug").on("click", function(e){
+					e.preventDefault();
+					improveMemeSuggestions();
+				});
+				$("#finPerMem").on("click", function(e){
+					e.preventDefault();
+					findPerfectMeme();
+				//TODO: add event listeners here to listen to the forms
+				});
+
+			}
+		});
+	};	
 
 	function loadCallback(authResult) {
 	  if (authResult['access_token']) {

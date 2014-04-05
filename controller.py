@@ -28,7 +28,7 @@ def login():
     profileImg = request.form.get("profileImg")
     userProfileData = [userId, name, gender, language, profileImg]
     graphModel.logInOrCreateUser(userProfileData)
-    return render_template("login.html")
+    return render_template("login.html", name=name)
 
 @app.route("/improveSuggestions", methods=["GET"])
 def improveSuggestions():
@@ -46,24 +46,36 @@ def improveSuggestions():
                                                     tagListTwo=tagListTwo)
 
 #TODO: Make new route that handle added or clicked tags (send to db)
-# @app.route("/improveSuggestions", methods=["POST"])
-# def improveSuggestions():
-#     #get the tags from the previous page
-#     #change the weight of the tagged relationship
-#     #make an ajax call that removes the tag and tells the user they've added it
-#     pass
-# #user request.form.get("tag") from ajax to send to DB 
+@app.route("/improveSuggestions", methods=["POST"])
+def improveSuggestionsSave():
+    tag = request.form.get("tagName")
+    img = request.form.get("imgSrc")
+    aWeight = 1
+    #get the tags from the previous page
+    #change the weight of the tagged relationship
+    #make an ajax call that removes the tag and tells the user they've added it
+    return tag, img
+#user request.form.get("tag") from ajax to send to DB 
 
-@app.route("/findPerfectMeme", methods=["GET", "POST"])
+@app.route("/findPerfectMeme", methods=["GET"])
 def findPerfectMeme():
-    #TODO: add functionality to return meme with db calls.
-    
-    # name = #get user name from session?
-    # memeList = #make a function in graph model that returns a list of meme urls
-                #given the tags from the previous page
-    #TODO: build out the findPerfectMeme.html jinja ajax insertion template
+    name = "Shannon"
+    userInput = request.args.get("tag")
+    dirtyTags = userInput.split(" ") 
+    tags = [tag.strip(" ,.!?'\"@#$%^&*()_-123456789~`{}[]").lower() for tag in dirtyTags]
+    memeList = graphModel.servePerfectMemes(tags)
+    if memeList == False:
+        errorHandler = "Sorry, no memes match your input. Please try again!"
+        return render_template('findPerfectMeme.html', name=name, memeList=memeList, errorHandler=errorHandler or "")
     return render_template('findPerfectMeme.html', name=name, memeList=memeList)
 
 ###some other stuff###
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
+
+
+
+
