@@ -54,8 +54,10 @@ def createImgNode(memeDict):
 
 
 def updateOrCreateTagged(memeDict):
-    """ Description:
-        Params: memeDict, dictionary, keys are urls and values are tags
+    """ Description: Checks to see if the img, tag and relationship are in the db
+                     if not, it adds them at each level and increments the 
+                     weighted property to indicate a stronger correlation
+        Params: memeDict, dictionary, keys are urls and values are list of tags
         Returns: None """
 
     #check to see if the image exists
@@ -133,8 +135,8 @@ def getRandomImgUrl():
     # randNode = graph_db.node(randint(2000, 3000))
     randNodeList = []
     for num in range(100):
-        randNodeList.append(graph_db.node(random.randint(2000, 2300)))
-
+        randNodeList.append(graph_db.node(random.randint(4300, 4700)))
+        print "WHYYYYYY?"
     for randNode in randNodeList:
         if not randNode.exists:
             continue

@@ -51,8 +51,10 @@ def improveSuggestionsSave():
     tag = request.form.get("tagName")
     img = request.form.get("imgSrc")
     aWeight = 1
+    graphModel.updateOrCreateTagged({img: [tag]})
     #get the tags from the previous page
     #change the weight of the tagged relationship
+
     #make an ajax call that removes the tag and tells the user they've added it
     return tag, img
 #user request.form.get("tag") from ajax to send to DB 
