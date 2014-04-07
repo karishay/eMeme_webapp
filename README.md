@@ -6,7 +6,7 @@ uses machine learning to find the best meme for any situation. The machine
 learning algorithm is powered by a Neo4j graph database using Py2neo to communicate 
 with the Python microframework, Flask. The front end of the web app is built with 
 Gumby, styled with Sass, and powered by Javascript and jQuery.
-To populate the database, I created a webscraper using PyQuery. 
+To populate the database, I created a [webscraper](scraper.py) using PyQuery. 
 
 Demo gif of the eMeme chrome extension:
 -------------------------------------------------
@@ -24,7 +24,7 @@ Demo gif of the eMeme web app:
 The eMeme web app uses google plus authentication for logging in and registration.
 
 eMeme's recommendation engine works by processing and cleaning input from the user. 
-It searches the database for images based on their relationship to each associated 
+It searches the [database]() for images based on their relationship to each associated 
 word (tag) and then selects three possible memes semi-randomly influenced by the 
 weighted correlation between images and tags.
 
