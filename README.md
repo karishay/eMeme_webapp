@@ -18,14 +18,15 @@ Here is a demo gif of the eMeme web app:
 
 Technologies Used:
 -----------------
-
-Neo4j/Cypher
-Python
-Flask/Jinja
-PyQuery
-Py2Neo
-
-Sass/CSS
-HTML
-javaScript/jQuery
-Gumby
+Back End:
+* Neo4j/Cypher
+* Python
+* Flask/Jinja
+* PyQuery
+* Py2Neo
+<br>
+Front End:
+* Sass/CSS
+* HTML
+* javaScript/jQuery
+* Gumby
