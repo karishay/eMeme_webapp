@@ -8,13 +8,25 @@ with the Python microframework, Flask. The front end of the web app is built wit
 Gumby, styled with Sass, and powered by javaScript and Jquery.
 To populate the database, I created a webscraper using PyQuery. 
 
-Here is a demo gif of the eMeme chrome extension:
+Demo gif of the eMeme chrome extension:
 -------------------------------------------------
+
+The eMeme chrome extension uses context menus to send a selection of text to be 
+processed by the algorithm and returns an image in the reply box.
+
 ![eMeme Chrome Extension Demo](https://raw.githubusercontent.com/karishay/eMeme_webapp/master/eMemeExtensionDemo.gif)
 
-Here is a demo gif of the eMeme web app:
+
+
+Demo gif of the eMeme web app:
 ----------------------------------------
+
+The eMeme web app uses google plus authentication for logging in and registration.
+
+
 ![eMeme Web App Demo](https://raw.githubusercontent.com/karishay/eMeme_webapp/master/eMemeWebAppDemo.gif)
+
+
 
 Technologies Used:
 -----------------
@@ -24,7 +36,8 @@ Back End:
 * Flask/Jinja
 * PyQuery
 * Py2Neo
-<br>
+
+
 Front End:
 * Sass/CSS
 * HTML
