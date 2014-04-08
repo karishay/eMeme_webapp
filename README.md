@@ -21,7 +21,7 @@ processed by the algorithm and returns an image in the reply box.
 Demo gif of the eMeme web app:
 ----------------------------------------
 
-The eMeme web app uses google plus authentication for logging in and registration.
+The eMeme web app uses Google + authentication for logging in and registration.
 
 eMeme's recommendation engine works by processing and cleaning input from the user. 
 It searches the [database](d1.png) for images based on their relationship to each associated 
