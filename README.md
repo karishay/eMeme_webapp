@@ -4,8 +4,8 @@ eMeme - Meme Recommendation Engine
 eMeme is a web app and chrome extension internet meme recommendation engine that 
 uses machine learning to find the best meme for any situation. The machine 
 learning algorithm is powered by a [Neo4j graph database](http://www.neo4j.org/) using [Py2neo](https://github.com/nigelsmall/py2neo) to communicate 
-with the Python microframework, Flask. The front end of the web app is built with 
-[Gumby](https://github.com/GumbyFramework/Gumby), styled with Sass, and powered by Javascript and jQuery.
+with the Python microframework, [Flask](http://flask.pocoo.org/). The front end of the web app is built with 
+[Gumby](https://github.com/GumbyFramework/Gumby), styled with [Sass](http://sass-lang.com/), and powered by Javascript and jQuery.
 To populate the database, I created a [webscraper](scraper.py) using PyQuery. 
 
 Demo gif of the eMeme chrome extension:
